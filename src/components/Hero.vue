@@ -20,7 +20,7 @@ import {RouterLink} from 'vue-router';
       </div>
   
       <div class="flex-1 flex justify-center items-center">
-        <img :src="logo" alt="eduPlatform" class="w-400 h-400 object-contain" />
+        <img :src="logo" alt="eduPlatform" class="w-400 h-400 object-contain transition-transform transform hover:rotate-12"" />
       </div>
     </div>
 </template>
