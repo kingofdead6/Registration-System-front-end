@@ -22,14 +22,14 @@ const goToNextPage = () => {
 </script>
 
 <template>
-  <div class="bg-[#F2EDED] h-screen">
+  <div class="bg-[#F7F4F4] h-screen">
     <!-- Form Title -->
-    <h2 class="text-[24px] font-bold text-[#2B4DD4] text-center pt-9 mb-6">
+    <h2 class="text-[24px] font-bold text-[#2B4DD4] text-center pt-9 mb-6 mt-20">
       Registration form
     </h2>
     <!-- Form Container -->
     <div class="flex justify-center items-center">
-      <div class="w-[400px] bg-white rounded-[20px] shadow-lg p-6">
+      <div class="w-[500px] bg-white rounded-[20px] shadow-lg p-8">
         <h2 class="text-[14px] font-bold pb-6">Participant Information:</h2>
         <!-- Form -->
         <form>
@@ -56,7 +56,7 @@ const goToNextPage = () => {
           </div>
   
             <!-- Buttons -->
-          <div class="flex justify-between mt-4">
+          <div class="flex justify-between mt-6">
             <!-- Back Button -->
             <button
               type="button"

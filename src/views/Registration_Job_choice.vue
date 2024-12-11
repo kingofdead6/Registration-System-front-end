@@ -25,22 +25,23 @@ const goToNextPage = () => {
 </script>
 
 <template>
-  <div class="bg-[#F2EDED] h-screen">
+  <div class="bg-[#F7F4F4] h-screen">
     <!-- Form Title -->
-    <h2 class="text-[24px] font-bold text-[#2B4DD4] text-center pt-[20px] mb-6">
+    <h2 class="text-[24px] font-bold text-[#2B4DD4] text-center pt-[20px] mb-6 mt-20">
       Registration form
     </h2>
 
     <!-- Form Container -->
     <div class="flex justify-center items-center">
-      <div class="w-[360px] bg-white rounded-[20px] shadow-lg p-6">
+      <div class="w-[500px] bg-white rounded-[20px] shadow-lg p-8">
         <!-- Form -->
         <form>
           <div class="mb-4">
-            <h4 class="text-[#737373] text-[12px] pl-3 pb-4">Select your role in the team <span class="text-red-900">*</span></h4>
+            <h2 class="text-[14px] font-bold pb-6">Personal Information:</h2>
+            <h4 class="text-[#737373] text-[12px] pl-3 pb-2">Select your role in the team <span class="text-red-900">*</span></h4>
             <!-- Role Selection -->
-            <div class="p-3 bg-[#F2F1F1] border rounded-md">
-              <label class="flex items-center">
+            <div class="p-8 bg-[#F2F1F1] border rounded-md">
+              <label class="flex items-center mb-[15px]">
                 <input
                   type="radio"
                   value="Team Leader"
@@ -62,7 +63,7 @@ const goToNextPage = () => {
           </div>
 
           <!-- Buttons -->
-          <div class="flex justify-between mt-4">
+          <div class="flex justify-between mt-6">
             <button
               type="button"
               class="py-2 bg-[#2B4DD4] text-white font-bold rounded-[12px] w-[120px] cursor-pointer hover:bg-[#173BA6] transition duration-300 font-inkut"

@@ -5,20 +5,20 @@ const router = useRouter();
 
 // Navigation handlers
 const goToMainPage = () => {
-  router.push('/'); 
+  router.push('/events_dashboard'); 
 };
 </script>
 
 <template>
   <div class="bg-[#F7F4F4] h-screen flex flex-col justify-center items-center mt-[-100px]">
     <!-- Form Title -->
-    <h2 class="text-[28px] font-bold text-[#2B4DD4] mb-6">
+    <h2 class="text-[28px] font-bold text-[#2B4DD4] mb-6 mt-20">
       Registration form
     </h2>
     <!-- Form Container -->
-    <div class="form-container bg-white rounded-[20px] shadow-lg p-8 w-[470px] h-[300px] text-center">
+    <div class="form-container bg-white rounded-[20px] shadow-lg p-8 w-[500px] h-[300px] text-center">
       <h2 class="text-[24px] font-bold mb-4">Team ID</h2>  
-      <p class="text-[15px] text-[#000] mb-[50px] w-[370px] font-[400px] leading-[18.75px] ml-5">
+      <p class="text-[15px] text-[#000] mb-[30px] w-[370px] font-[400px] leading-[25px] ml-5">
         The Team ID has been sent to your email, please check it and share it with your team members so they can join, thank you!
       </p>      
       <!-- Done Button -->

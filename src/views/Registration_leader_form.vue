@@ -25,14 +25,14 @@ const goToNextPage = () => {
 </script>
 
 <template>
-  <div class="bg-[#F2EDED] h-screen">
+  <div class="bg-[#F7F4F4] h-screen">
     <!-- Form Title -->
-    <h2 class="text-[24px] font-bold text-[#2B4DD4] text-center pt-9 mb-6">
+    <h2 class="text-[24px] font-bold text-[#2B4DD4] text-center pt-9 mb-6 mt-20">
       Registration form
     </h2>
     <!-- Form Container -->
     <div class="flex justify-center items-center">
-      <div class="w-[400px] bg-white rounded-[20px] shadow-lg p-6">
+      <div class="w-[500px] bg-white rounded-[20px] shadow-lg p-6">
         <h2 class="text-[14px] font-bold pb-6">Participant Information:</h2>
         <!-- Form -->
         <form>
@@ -49,13 +49,13 @@ const goToNextPage = () => {
           </div>
           <!-- Team Members Dropdown -->
           <div class="mb-4">
-            <h4 class="text-[#737373] text-[11px] pl-3 pb-2">
+            <h4 class="text-[#737373] text-[12px] pl-3 pb-2">
               How many members are in the team (including you)
               <span class="text-red-900">*</span>
             </h4>
             <select
               v-model="members"
-              class="w-full p-[-20px] bg-[#F2F1F1] border rounded-md text-gray-700 text-center focus:outline-none focus:ring focus:ring-blue-200"
+              class="w-full p-[-20px] bg-[#F2F1F1] pl-2 border rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
             >
               <option value="" disabled selected>Select</option>
               <option
@@ -77,7 +77,7 @@ const goToNextPage = () => {
             />
           </div>
           <!-- Buttons -->
-          <div class="flex justify-between mt-4">
+          <div class="flex justify-between mt-6">
             <!-- Back Button -->
             <button
               type="button"
