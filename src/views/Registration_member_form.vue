@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import NavBar from '../components/NavBar.vue'; 
 
 const router = useRouter();
 const teamID = ref('');
