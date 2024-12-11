@@ -9,6 +9,7 @@ import Registration_leader_form from "../Views/Registration_leader_form.vue";
 import Registration_member_form from "../Views/Registration_member_form.vue";
 import TeamCreated from "../Views/TeamCreated.vue";
 import TeamJoined from "../Views/TeamJoined.vue";
+import DevFest from "../Events/DevFest.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -61,7 +62,13 @@ const router = createRouter({
               path : '/teamjoined' ,
               name : 'teamjoined',
               component : TeamJoined
-          }
+          },
+        {
+            path : '/devfest' ,
+            name : 'devfest ' ,
+            conponent : DevFest
+        }
+
     ]
 });
 
