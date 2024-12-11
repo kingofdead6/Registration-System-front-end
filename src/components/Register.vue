@@ -1,9 +1,10 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { computed } from 'vue';
 import BackButton from './BackButton.vue';
 
 const route = useRoute();
+const router = useRouter();
 const eventId = route.params.id;
 
 const events = [
@@ -17,6 +18,10 @@ const events = [
 const event = computed(() => {
   return events.find(event => event.id === eventId);
 });
+
+const goNextpage = () => {
+  router.push('/registration_form'); 
+};
 </script>
 
 <template>
@@ -27,7 +32,11 @@ const event = computed(() => {
            {{ event.description }}
         </p>
         <div class="flex items-center justify-center text-center flex-row space-x-10 mb-[105px] mt-10">
-            <button class="bg-[#2B4DD4] font-bold text-white rounded-[13px] py-2 px-7">Register</button>
+            <button class="bg-[#2B4DD4] font-bold text-white rounded-[13px] py-2 px-7"
+            @click="goNextpage">Register</button>
         </div>
+    </div>
+    <div v-else class="text-center text-red-500 font-bold mt-10">
+        Event not found. Please check the URL or try again.
     </div>
 </template>
