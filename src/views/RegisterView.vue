@@ -1,3 +1,7 @@
-<script setup></script>
+<script setup>
+import Register from '../components/Register.vue'
+</script>
 
-<template></template>
+<template>
+  <Register/>
+</template>
