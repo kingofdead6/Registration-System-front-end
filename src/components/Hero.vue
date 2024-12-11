@@ -9,7 +9,7 @@ import {RouterLink} from 'vue-router';
         <h1 class="text-gray-800 font-bold text-4xl leading-tight tracking-tighter mt-20">
             Welcome to GDG Events website where u can register as a staff or create and join team on your own
         </h1>
-        <RouterLink to="/events-dashboard">
+        <RouterLink to="/events_dashboard">
           <button
           type="button"
           class="bg-[#2B4DD4] hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-lg shadow-md mt-10"
