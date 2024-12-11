@@ -4,7 +4,7 @@ import {RouterLink} from 'vue-router';
 
 const navItems = [
   { label: "GDG Events", icon: logo, isImage: true},
-]
+];
 </script>
 
 <template>
