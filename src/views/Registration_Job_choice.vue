@@ -26,7 +26,6 @@ const goToNextPage = () => {
 </script>
 
 <template>
-  <NavBar />
   <div class="bg-[#F2EDED] h-screen">
     <!-- Form Title -->
     <h2 class="text-[24px] font-bold text-[#2B4DD4] text-center pt-[20px] mb-6">
