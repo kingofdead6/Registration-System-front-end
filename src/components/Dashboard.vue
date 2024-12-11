@@ -23,7 +23,7 @@ const dashboardItems = [
       <section class="bg-[#F7F4F4] px-4 py-10">
       <div class="container-xl lg:container m-auto">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <RouterLink :to="`/register/` + item.id" v-for="(item, index) in dashboardItems" :key="index" class="bg-[#E7E6E6] rounded-xl shadow-md cursor-pointer">
+          <RouterLink :to="`/register/${item.id}`" v-for="(item, index) in dashboardItems" :key="index" class="bg-[#E7E6E6] rounded-xl shadow-md cursor-pointer">
             <div class="p-2">
               <img :src="item.icon" :alt="item.label" class="rounded-xl">
               <div class="text-green-600 mb-3 font-medium text-center text-lg mt-5">
