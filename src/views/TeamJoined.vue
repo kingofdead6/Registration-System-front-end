@@ -35,7 +35,7 @@ const goToMainPage = () => {
 <style>
 body {
   margin: 0;
-  background-color: #f1f1f1;
+  background-color: #F7F4F4;
 }
 
 .form-container {
