@@ -4,7 +4,7 @@ import {RouterLink} from 'vue-router';
 </script>
 
 <template>
-    <div class="bg-[#F7F4F4] flex pb-5" id="home">
+    <div class="pb-5 bg-[#F7F4F4] flex h-[85vh] overflow-hidden" id="home">
       <div class="flex-1 flex flex-col justify-start m-20">
         <h1 class="text-gray-800 font-bold text-4xl leading-tight tracking-tighter mt-20">
             Welcome to GDG Events website where u can register as a staff or create and join team on your own
