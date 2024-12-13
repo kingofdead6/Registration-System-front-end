@@ -10,7 +10,6 @@ import Registration_member_form from "../Views/Registration_member_form.vue";
 import TeamCreated from "../Views/TeamCreated.vue";
 import TeamJoined from "../Views/TeamJoined.vue";
 import AdminAuth from "../views/AdminAuth.vue";
-import AdminDashboard from "../views/AdminDashboard.vue";
 import ParticipantsList from "../views/ParticipantsList.vue";
 
 const router = createRouter({
@@ -67,14 +66,9 @@ const router = createRouter({
             component : TeamJoined
         },
         {
-            path: '/admin/auth',
+            path: '/admin/dashboard',
             name: 'admin-auth',
             component: AdminAuth
-        },
-        {
-            path: '/admin/dashboard',
-            name: 'admin-dashboard',
-            component: AdminDashboard
         },
         {
             path: '/admin/:id/participants_list',
