@@ -5,3 +5,8 @@ import Hero from '../components/Hero.vue'
 <template>
   <Hero/>
 </template>
+<style>
+body{
+  overflow: hidden;
+}
+</style>
