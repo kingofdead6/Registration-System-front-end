@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { globalState } from '../store.js';
 
 const router = useRouter();
 
 const selectedRole = ref(null);
 const isFormValid = () => {
-  return selectedRole.value !== null;
+  return globalState.selectedRole !== null;
 };
 
 // Navigation handlers
@@ -15,9 +16,9 @@ const goToPreviousPage = () => {
 };
 
 const goToNextPage = () => {
-  if (selectedRole.value === 'Team Leader') {
+  if (globalState.selectedRole === 'Team Leader') {
     router.push('/registration_leader_form'); 
-  } else if (selectedRole.value === 'Team Member') {
+  } else if (globalState.selectedRole === 'Team Member') {
     router.push('/registration_member_form'); 
   }
 };
@@ -45,7 +46,7 @@ const goToNextPage = () => {
                 <input
                   type="radio"
                   value="Team Leader"
-                  v-model="selectedRole" 
+                  v-model="globalState.selectedRole" 
                   class="mr-2 radio-input"
                 />
                 <span class="text-green-600">Team Leader</span>
@@ -54,7 +55,7 @@ const goToNextPage = () => {
                 <input
                   type="radio"
                   value="Team Member"
-                  v-model="selectedRole"
+                  v-model="globalState.selectedRole"
                   class="mr-2 radio-input"
                 />
                 <span class="text-red-600">Team Member</span>

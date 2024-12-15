@@ -1,13 +1,12 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { globalState } from '../store.js';
 
 const router = useRouter();
-const teamID = ref('');
-const additionalInfo = ref('');
 
 const isFormValid = () => {
-  return teamID.value ;
+  return globalState.teamID ;
 };
 
 // Navigation handlers
@@ -15,85 +14,88 @@ const goToPreviousPage = () => {
   router.push('/registration_Job_choice');
 };
 
-const handleSubmission = () => {
-  const checkTeam = async (teamName) => {
-    try {
-        const response = await fetch(`https://your-api-url.com/api/check/${teamName}`, {
-            method: 'POST', // Assuming your API endpoint uses POST
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                // Add Authorization header if your API requires authentication
-                // 'Authorization': 'Bearer YOUR_API_TOKEN',
-            },
-            body: JSON.stringify({
-                team_name: teamName, // Pass the team name to check
-            }),
-        });
+const handleSubmission = async () => {
+  try {
+    const teamData = await checkTeam(globalState.teamID);
 
-        // Handle non-200 status codes
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Error:', errorData);
-            alert(`Error: ${errorData.message}`);
-            return;
-        }
-
-        // Parse the successful response
-        const data = await response.json();
-        console.log('Team Found:', data);
-        alert(`Team Found! ID: ${data.team_id}, Name: ${data.team_name}`);
-
-        router.push('/teamjoined'); 
-
-        // Return the team data for further use
-        return data;
-    } catch (error) {
-        console.error('Error fetching team:', error);
-        alert('An error occurred while checking the team.');
+    if (!teamData) {
+      console.error("Team check failed.");
+      return;
     }
-  };
-  checkTeam(teamID.value);
 
-  const registerUser = async () => {
-    try {
-        const response = await fetch('http://127.0.0.1:8000/api/v1/registrations', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                name: null,
-                email: "adambelkadi1@gmail.com",
-                phone_number: "0558946043",
-                linkedin: null,
-                github: null,
-                other: null,
-                team_id: 2,
-                event_id: 1
-            })
-        });
+    await registerUser();
 
-        // Handle the response
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Error:', errorData);
-            alert(`Error: ${errorData.message}`);
-            return;
-        }
-
-        const responseData = await response.json();
-        console.log('Success:', responseData);
-        alert('Registration successful!');
-    } catch (error) {
-        console.error('Network or Server Error:', error);
-        alert('An error occurred while sending the request.');
-    }
-  };
-  registerUser();
+    router.push('/teamjoined');
+  } catch (error) {
+    console.error("Error during submission process:", error);
+    alert("An error occurred. Please try again.");
+  }
 };
 
+const checkTeam = async (teamName) => {
+  try {
+    const response = await fetch(`https://your-api-url.com/api/check/${teamName}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ team_name: teamName }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error:', errorData);
+      alert(`Error: ${errorData.message}`);
+      return null;
+    }
+
+    const data = await response.json();
+    console.log('Team Found:', data);
+    alert(`Team Found! ID: ${data.team_id}, Name: ${data.team_name}`);
+    return data;
+  } catch (error) {
+    console.error('Error fetching team:', error);
+    alert('An error occurred while checking the team.');
+    return null;
+  }
+};
+
+const registerUser = async () => {
+  try {
+    const response = await fetch('http://127.0.0.1:8000/api/v1/registrations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        name: globalState.teamName,
+        email: globalState.email,
+        phone_number: globalState.phoneNumber,
+        linkedin: globalState.linkedinProfile,
+        github: globalState.githubProfile,
+        other: globalState.otherLinks,
+        team_id: globalState.teamID,
+        event_id: 1,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Error:', errorData);
+      alert(`Error: ${errorData.message}`);
+      return;
+    }
+
+    const responseData = await response.json();
+    console.log('Success:', responseData);
+    alert('Registration successful!');
+  } catch (error) {
+    console.error('Network or Server Error:', error);
+    alert('An error occurred while sending the request.');
+  }
+};
 </script>
 
 <template>
@@ -116,7 +118,7 @@ const handleSubmission = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="teamID"
+              v-model="globalState.teamID"
             />
           </div>
         
@@ -126,7 +128,7 @@ const handleSubmission = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="additionalInfo"
+              v-model="globalState.additionalInfo"
             />
           </div>
   

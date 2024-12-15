@@ -1,17 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { globalState } from '../store.js';
 
 const router = useRouter();
-
-const Github_Profile = ref('');
-const Linkedin_Profile = ref('');
 const Other_links = ref('');
 
 const isFormValid = () => {
-  return (
-    Github_Profile.value &&
-    Linkedin_Profile.value  );
+  return globalState.githubProfile && globalState.linkedinProfile;
 };
 
 // Navigation handlers
@@ -43,7 +39,7 @@ const goToNextPage = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="Github_Profile"
+              v-model="globalState.githubProfile"
             />
           </div>
           <div class="mb-4">
@@ -51,7 +47,7 @@ const goToNextPage = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="Linkedin_Profile"
+              v-model="globalState.linkedinProfile"
             />
           </div>
           <div class="mb-4">

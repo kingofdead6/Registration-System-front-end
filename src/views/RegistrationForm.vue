@@ -1,13 +1,7 @@
 <script setup>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import BackButton from '../components/BackButton.vue';
-
-const fullName = ref('');
-const email = ref('');
-const discordId = ref('');
-const phoneNumber = ref('');
-const university = ref('');
+import { globalState } from '../store.js';
 
 const router = useRouter();
 
@@ -15,11 +9,11 @@ const universities = ['ESI', 'USTHB', 'ENSIA', 'Another One'];
 
 const isFormValid = () => {
   return (
-    fullName.value &&
-    email.value &&
-    discordId.value &&
-    phoneNumber.value &&
-    university.value
+    globalState.fullName &&
+    globalState.email &&
+    globalState.discordId &&
+    globalState.phoneNumber &&
+    globalState.university
   );
 };
 
@@ -46,7 +40,7 @@ const goToNextPage = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="fullName"
+              v-model="globalState.fullName"
             />
           </div>
           <div class="mb-4">
@@ -54,7 +48,7 @@ const goToNextPage = () => {
             <input
               type="email"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="email"
+              v-model="globalState.email"
             />
           </div>
           <div class="mb-4">
@@ -62,7 +56,7 @@ const goToNextPage = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="discordId"
+              v-model="globalState.discordId"
             />
           </div>
           <div class="mb-4">
@@ -70,14 +64,14 @@ const goToNextPage = () => {
             <input
               type="tel"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md text-gray-700 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="phoneNumber"
+              v-model="globalState.phoneNumber"
             />
           </div>
             <!-- Dropdown for University -->
             <div class="mb-4">
                 <h4 class="text-[#737373] text-[12px] pl-3 ">University <span class="text-red-900">*</span></h4>
             <select
-              v-model="university"
+              v-model="globalState.university"
               class="w-full p-0 bg-[#F2F1F1] border rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
             >
               <!-- <option value="" disabled selected>Select Your University</option> -->

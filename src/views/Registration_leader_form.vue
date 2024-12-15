@@ -1,15 +1,12 @@
 <script setup>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { globalState } from '../store.js';
+import { getTeamLeader } from '../store.js';
 
 const router = useRouter();
 
-const teamName = ref('');
-const additionalInfo = ref('');
-
-
 const isFormValid = () => {
-  return teamName.value;
+  return globalState.teamName;
 };
 
 // Navigation handlersk 
@@ -52,7 +49,7 @@ const handleSubmission = () => {
         console.error('Error creating team:', error);
     }
   };
-  createTeam(teamName.value, 1, 1);
+  createTeam(globalState.teamName, getTeamLeader(), 1);
 };
 </script>
 
@@ -76,7 +73,7 @@ const handleSubmission = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="teamName"
+              v-model="globalState.teamName"
             />
           </div>
 
@@ -86,7 +83,7 @@ const handleSubmission = () => {
             <input
               type="text"
               class="w-full p-2 bg-[#F2F1F1] border rounded-md focus:outline-none focus:ring focus:ring-blue-200"
-              v-model="additionalInfo"
+              v-model="globalState.additionalInfo"
             />
           </div>
           <!-- Buttons -->
