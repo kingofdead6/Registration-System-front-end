@@ -5,22 +5,54 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const teamName = ref('');
-const members = ref('');
 const additionalInfo = ref('');
 
-const teamMembersOptions = ['3', '4', '5', '6'];
 
 const isFormValid = () => {
-  return teamName.value && members.value;
+  return teamName.value;
 };
-// Navigation handlersk 
 
+// Navigation handlersk 
 const goToPreviousPage = () => {
   router.push('/registration_Job_choice');
 };
 
-const goToNextPage = () => {
-  router.push('/teamcreated'); 
+const handleSubmission = () => {
+  const createTeam = async (teamName, teamLeaderId, eventId) => {
+    try {
+        const response = await fetch('https://your-api-url.com/api/teams', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                // Add your authentication token if required:
+                // 'Authorization': 'Bearer YOUR_API_TOKEN',
+            },
+            body: JSON.stringify({
+                team_name: teamName,
+                team_leader_id: teamLeaderId,
+                event_id: eventId,
+                accepted: true, // Default value or dynamic based on your logic
+            }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Error:', errorData);
+            return;
+        }
+
+        const data = await response.json();
+        console.log('Team Created Successfully:', data);
+        router.push('/teamcreated'); 
+
+        // Return or use the created team ID
+        return data.team_id;
+    } catch (error) {
+        console.error('Error creating team:', error);
+    }
+  };
+  createTeam(teamName.value, 1, 1);
 };
 </script>
 
@@ -37,7 +69,7 @@ const goToNextPage = () => {
         <!-- Form -->
         <form>
           <!-- Team's Name -->
-          <div class="mb-4">
+          <div class="mb-6">
             <h4 class="text-[#737373] text-[12px] pl-3">
               Team's Name <span class="text-red-900">*</span>
             </h4>
@@ -47,26 +79,7 @@ const goToNextPage = () => {
               v-model="teamName"
             />
           </div>
-          <!-- Team Members Dropdown -->
-          <div class="mb-4">
-            <h4 class="text-[#737373] text-[12px] pl-3 pb-2">
-              How many members are in the team (including you)
-              <span class="text-red-900">*</span>
-            </h4>
-            <select
-              v-model="members"
-              class="w-full p-[-20px] bg-[#F2F1F1] pl-2 border rounded-md text-gray-700 focus:outline-none focus:ring focus:ring-blue-200"
-            >
-              <option value="" disabled selected>Select</option>
-              <option
-                v-for="member in teamMembersOptions"
-                :key="member"
-                :value="member"
-              >
-                {{ member }}
-              </option>
-            </select>
-          </div>
+
           <!-- Additional Info -->
           <div class="mb-4">
             <h4 class="text-[#737373] text-[12px] pl-3">Anything to add?</h4>
@@ -90,7 +103,7 @@ const goToNextPage = () => {
             <button
               type="button"
               class="py-2 bg-[#2B4DD4] text-white font-bold rounded-[12px] w-[120px] cursor-pointer hover:bg-[#173BA6] transition duration-300 font-inkut"
-              @click="goToNextPage"
+              @click="handleSubmission"
               :disabled="!isFormValid()"
             >
               Submit

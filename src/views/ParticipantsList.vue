@@ -186,8 +186,8 @@ thead th{
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #fef9c3;
-    color: #ef4444;
+    background-color: #ebe1e1;
+    color: #000000;
 }
 table, th, td{
     padding: 1rem;
