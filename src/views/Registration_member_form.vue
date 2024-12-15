@@ -92,6 +92,7 @@ const handleSubmission = () => {
     }
   };
   registerUser();
+  router.push('/teamjoined');
 };
 
 </script>
