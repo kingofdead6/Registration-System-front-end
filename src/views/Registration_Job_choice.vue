@@ -88,7 +88,7 @@ const goToNextPage = () => {
 <style scoped>
 body {
   margin: 0;
-  background-color: #F2EDED;
+  background-color: #F7F4F4;
 }
 
 input[type="radio"] {

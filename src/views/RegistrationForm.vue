@@ -108,6 +108,6 @@ const goToNextPage = () => {
 <style>
 body {
   margin: 0;
-  background-color: #F2EDED;
+  background-color: #F7F4F4;
 }
 </style>
