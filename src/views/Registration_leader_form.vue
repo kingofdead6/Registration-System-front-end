@@ -49,7 +49,7 @@ const handleSubmission = () => {
         console.error('Error creating team:', error);
     }
   };
-  createTeam(globalState.teamName, getTeamLeader(), 1);
+  createTeam(teamName.value, getTeamLeader(), 1);
 };
 </script>
 

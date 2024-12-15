@@ -88,14 +88,16 @@ const registerUser = async () => {
       return;
     }
 
-    const responseData = await response.json();
-    console.log('Success:', responseData);
-    alert('Registration successful!');
+        const responseData = await response.json();
+        console.log('Success:', responseData);
+        alert('Registration successful!');
   } catch (error) {
-    console.error('Network or Server Error:', error);
-    alert('An error occurred while sending the request.');
+        console.error('Network or Server Error:', error);
+        alert('An error occurred while sending the request.');
   }
 };
+
+
 </script>
 
 <template>

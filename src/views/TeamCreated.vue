@@ -10,7 +10,7 @@ const goToMainPage = () => {
 </script>
 
 <template>
-  <div class="bg-[#F7F4F4] h-screen flex flex-col justify-center items-center mt-[-100px]">
+  <div class=" h-screen flex flex-col justify-center items-center mt-[-100px]">
     <!-- Form Title -->
     <h2 class="text-[28px] font-bold text-[#2B4DD4] mb-6 mt-20">
       Registration form
