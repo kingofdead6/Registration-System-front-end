@@ -23,4 +23,5 @@ import {RouterLink} from 'vue-router';
         <img :src="logo" alt="eduPlatform" class="w-300 h-300 object-contain transition-transform transform hover:rotate-12" />
       </div>
     </div>
+    </div>
 </template>
