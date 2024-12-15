@@ -53,6 +53,7 @@ const handleSubmission = () => {
     }
   };
   createTeam(teamName.value, 1, 1);
+  router.push('/teamcreated');
 };
 </script>
 
