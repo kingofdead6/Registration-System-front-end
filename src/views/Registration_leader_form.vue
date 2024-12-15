@@ -15,41 +15,41 @@ const goToPreviousPage = () => {
 };
 
 const handleSubmission = () => {
-  const createTeam = async (teamName, teamLeaderId, eventId) => {
-    try {
-        const response = await fetch('https://your-api-url.com/api/teams', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                // Add your authentication token if required:
-                // 'Authorization': 'Bearer YOUR_API_TOKEN',
-            },
-            body: JSON.stringify({
-                team_name: teamName,
-                team_leader_id: teamLeaderId,
-                event_id: eventId,
-                accepted: true, // Default value or dynamic based on your logic
-            }),
-        });
+  // const createTeam = async (teamName, teamLeaderId, eventId) => {
+  //   try {
+  //       const response = await fetch('https://your-api-url.com/api/teams', {
+  //           method: 'POST',
+  //           headers: {
+  //               'Content-Type': 'application/json',
+  //               'Accept': 'application/json',
+  //               // Add your authentication token if required:
+  //               // 'Authorization': 'Bearer YOUR_API_TOKEN',
+  //           },
+  //           body: JSON.stringify({
+  //               team_name: teamName,
+  //               team_leader_id: teamLeaderId,
+  //               event_id: eventId,
+  //               accepted: true, // Default value or dynamic based on your logic
+  //           }),
+  //       });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error('Error:', errorData);
-            return;
-        }
+  //       if (!response.ok) {
+  //           const errorData = await response.json();
+  //           console.error('Error:', errorData);
+  //           return;
+  //       }
 
-        const data = await response.json();
-        console.log('Team Created Successfully:', data);
-        router.push('/teamcreated'); 
+  //       const data = await response.json();
+  //       console.log('Team Created Successfully:', data); 
 
-        // Return or use the created team ID
-        return data.team_id;
-    } catch (error) {
-        console.error('Error creating team:', error);
-    }
-  };
-  createTeam(teamName.value, getTeamLeader(), 1);
+  //       // Return or use the created team ID
+  //       return data.team_id;
+  //   } catch (error) {
+  //       console.error('Error creating team:', error);
+  //   }
+  // };
+  // createTeam(globalState.teamName, getTeamLeader(), 1);
+  router.push('/teamcreated');
 };
 </script>
 

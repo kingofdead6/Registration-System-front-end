@@ -15,87 +15,88 @@ const goToPreviousPage = () => {
 };
 
 const handleSubmission = async () => {
-  try {
-    const teamData = await checkTeam(globalState.teamID);
+  router.push('/teamjoined');
+  // try {
+  //   const teamData = await checkTeam(globalState.teamID);
 
-    if (!teamData) {
-      console.error("Team check failed.");
-      return;
-    }
+  //   if (!teamData) {
+  //     console.error("Team check failed.");
+  //     return;
+  //   }
 
-    await registerUser();
+  //   await registerUser();
 
-    router.push('/teamjoined');
-  } catch (error) {
-    console.error("Error during submission process:", error);
-    alert("An error occurred. Please try again.");
-  }
+  //   router.push('/teamjoined');
+  // } catch (error) {
+  //   console.error("Error during submission process:", error);
+  //   alert("An error occurred. Please try again.");
+  // }
 };
 
-const checkTeam = async (teamName) => {
-  try {
-    const response = await fetch(`https://your-api-url.com/api/check/${teamName}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({ team_name: teamName }),
-    });
+// const checkTeam = async (teamName) => {
+//   try {
+//     const response = await fetch(`https://your-api-url.com/api/check/${teamName}`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//       },
+//       body: JSON.stringify({ team_name: teamName }),
+//     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error:', errorData);
-      alert(`Error: ${errorData.message}`);
-      return null;
-    }
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       console.error('Error:', errorData);
+//       alert(`Error: ${errorData.message}`);
+//       return null;
+//     }
 
-    const data = await response.json();
-    console.log('Team Found:', data);
-    alert(`Team Found! ID: ${data.team_id}, Name: ${data.team_name}`);
-    return data;
-  } catch (error) {
-    console.error('Error fetching team:', error);
-    alert('An error occurred while checking the team.');
-    return null;
-  }
-};
+//     const data = await response.json();
+//     console.log('Team Found:', data);
+//     alert(`Team Found! ID: ${data.team_id}, Name: ${data.team_name}`);
+//     return data;
+//   } catch (error) {
+//     console.error('Error fetching team:', error);
+//     alert('An error occurred while checking the team.');
+//     return null;
+//   }
+// };
 
-const registerUser = async () => {
-  try {
-    const response = await fetch('http://127.0.0.1:8000/api/v1/registrations', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        name: globalState.teamName,
-        email: globalState.email,
-        phone_number: globalState.phoneNumber,
-        linkedin: globalState.linkedinProfile,
-        github: globalState.githubProfile,
-        other: globalState.otherLinks,
-        team_id: globalState.teamID,
-        event_id: 1,
-      }),
-    });
+// const registerUser = async () => {
+//   try {
+//     const response = await fetch('http://127.0.0.1:8000/api/v1/registrations', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         name: globalState.teamName,
+//         email: globalState.email,
+//         phone_number: globalState.phoneNumber,
+//         linkedin: globalState.linkedinProfile,
+//         github: globalState.githubProfile,
+//         other: globalState.otherLinks,
+//         team_id: globalState.teamID,
+//         event_id: 1,
+//       }),
+//     });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Error:', errorData);
-      alert(`Error: ${errorData.message}`);
-      return;
-    }
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       console.error('Error:', errorData);
+//       alert(`Error: ${errorData.message}`);
+//       return;
+//     }
 
-        const responseData = await response.json();
-        console.log('Success:', responseData);
-        alert('Registration successful!');
-  } catch (error) {
-        console.error('Network or Server Error:', error);
-        alert('An error occurred while sending the request.');
-  }
-};
+//         const responseData = await response.json();
+//         console.log('Success:', responseData);
+//         alert('Registration successful!');
+//   } catch (error) {
+//         console.error('Network or Server Error:', error);
+//         alert('An error occurred while sending the request.');
+//   }
+// };
 
 
 </script>
