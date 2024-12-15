@@ -1,14 +1,32 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import AdminDashboard from './AdminDashboard.vue';
 
-const CORRECT_PASSWORD = "yasmineadamyoucef1234";
+let CORRECT_PASSWORD = ''; 
 
 const adminPassword = ref('');
 const confirmPassword = ref('');
 const adminPasswordError = ref('');
 const confirmPasswordError = ref('');
 const isAdminAuthenticated = ref(false);
+
+onMounted(async () => {
+  const isAuthenticated = localStorage.getItem('isAdminAuthenticated');
+  if (isAuthenticated === 'true') {
+    isAdminAuthenticated.value = true;
+  }
+
+  try {
+    const response = await fetch('/password.txt');
+    if (response.ok) {
+      CORRECT_PASSWORD = await response.text(); 
+    } else {
+      console.error('Failed to load password');
+    }
+  } catch (error) {
+    console.error('Error fetching password:', error);
+  }
+});
 
 const handleSignIn = () => {
   adminPasswordError.value = '';
@@ -26,13 +44,28 @@ const handleSignIn = () => {
 
   if (!adminPasswordError.value && !confirmPasswordError.value) {
     isAdminAuthenticated.value = true;
+    localStorage.setItem('isAdminAuthenticated', 'true');
   }
 };
 
+const handleLogout = () => {
+  localStorage.removeItem('isAdminAuthenticated');
+  isAdminAuthenticated.value = false;
+};
 </script>
 
 <template>
   <div class="bg-[#F7F4F4] h-screen">
+    <!-- logout -->
+    <div v-if="isAdminAuthenticated" class="absolute top-5 right-5">
+      <button
+        class="py-2 px-4 bg-[#2B4DD4] text-white font-bold rounded-md hover:bg-red-600"
+        @click="handleLogout"
+      >
+        Logout
+      </button>
+    </div>
+    <!-- the rest of the code  -->
     <div v-if="!isAdminAuthenticated" class="flex justify-center items-center">
       <div class="w-[500px] bg-white rounded-[20px] shadow-lg p-8 mt-20">
         <h2 class="text-[30px] font-bold text-[#2B4DD4] text-center pt-5 mb-6">
